@@ -1,3 +1,22 @@
 .navbar {
     background-color: #951e1e !important;
 }
+
+.login-body {
+    height: 900px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-box {
+    margin-top: 300px;
+    width: 200px;
+    height: 200px;
+    background-color: #c07171f1;
+    border-radius: 20px;
+}
+
+form {
+    text-align: center;
+}
