@@ -4,59 +4,62 @@
 {% block body %}
     <!-- Start of body content specific to page -->
     <div class="px-5 py-5 mx-auto h-full" style="height: 900px;">
-        <h1 class="text-white"><strong>Generate Jokes Here!!</strong></h1>
+        <h1 class="text-white"><strong>Generate Jokes Here!!!</strong></h1>
         <div class="row">
             <div class="col-4">
-                <!-- <div class="card">
-                    <img class="card-img-top" src="{{ url_for('static', filename='assets/python.jpeg') }}" alt="Python Development" height="250">
-                    <div class="card-body">
-                    <h5 class="card-title">What should <mark>Student Developers learn</mark>?</h5>
-                    <p class="card-text">
-                        <ol>
-                            <li>Python 3.11 is used for most of our backend PBL. HTML, CSS, JavaScript will be used in frontend</li>
-                            <li>Visuals Studio Code (VS Code) is the primary editor, Interactive Development Environment (IDE).</li>
-                            <li>GitHub.  Managing and sharing code change, branches, pull requests, issues, and more will be through GitHub.</li>
-                            <li>DevOps. Python programmers should have a passion for managing the environment and learning automation (Git, Linux, Bash, Python Packages, Docker).</li>
-                            <li>API and Microservice using Flask.  Mastering development techniques in creating and consuming RESTful APIs</li>
-                        </ol>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{ url_for('static', filename='assets/flask.png') }}" alt="Flask Development" height="250">
-                    <div class="card-body">
-                    <h5 class="card-title">What is <mark>Flask</mark>? How do I start Web development?</h5>
-                    <p class="card-text">
-                        <ol>
-                            <li>Flask Framework is the popular Web Application development framework of Python.</li>
-                            <li>Blueprint is utility to help abstract complexity, moving information in independent files and directories.</li>
-                            <li>HTML using Bootstrap is a great way to build interesting pages and reduce CSS</li>
-                            <li>Jinja2 is a server-side Python like template engine, supports HTML5 web development, and provides full integration with Flask.</li>
-                        </ol>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{ url_for('static', filename='assets/pythondb.png') }}" alt="Backend and Persistence" height="250">
-                    <div class="card-body">
-                    <h5 class="card-title">How do you manage <mark>Persistent data</mark> with Python?</h5>
-                    <p class="card-text">
-                        <ol>
-                            <li>A Database is an example of persistent data that is held on a computer.  Programming languages and frameworks allow you to store and retrive data.</li>
-                            <li>SQL stands for Structured Query Language · SQL lets you access and manipulate databases and has become a long lasting development standard.</li>
-                            <li>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper (ORM) that gives application developers the full power and flexibility of SQL.</li>
-                            <li>There are many newer and sometimes easier Database languages and frameworks.  Mongo, DynamoDB, Neo4J are Databases being used by students developers in last 3 years.</li>
-                        </ol>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div> -->
+                
+<button class="joke-button" onclick="generateJoke()">Generate Joke</button>
+
+<div class="joke-container" id="joke-container">
+    <p class="joke-text" id="joke-text">Click the button above to generate a joke!</p>
+</div>
+
+<script>
+    function generateJoke() {
+        const jokes = [
+            "Why don't scientists trust atoms? Because they make up everything!",
+            "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+            "Why did the scarecrow win an award? Because he was outstanding in his field!",
+            "Why don't skeletons fight each other? They don't have the guts.",
+            "What do you call fake spaghetti? An impasta!",
+            "Parallel lines have so much in common. It's a shame they'll never meet.",
+            "What did one plate say to the other plate? Dinner is on me!",
+            "I'm reading a book on anti-gravity. It's impossible to put down!",
+            "Why did the math book look sad? Because it had too many problems.",
+            "I used to play piano by ear, but now I use my hands.",
+            "Why don't eggs tell jokes? Because they'd crack each other up!",
+            "What did one ocean say to the other ocean? Nothing, they just waved.",
+            "Why don't some couples go to the gym? Because some relationships don't work out!",
+            "Why was the math book sad? Because it had too many problems.",
+            "Why did the bicycle fall over? Because it was two-tired!",
+            "Why did the scarecrow win an award? Because he was outstanding in his field.",
+            "What do you call a fish with no eyes? Fsh!",
+            "Why did the bicycle fall over? Because it was two tired.",
+            "Did you hear about the restaurant on the moon? Great food, no atmosphere.",
+            "Why did the coffee file a police report? It got mugged.",
+            "Why did the JavaScript developer go broke? Because he used typeof on a penny and got a 'string' instead of a 'number'.",
+            "What do you call a programmer who procrastinates? A lazy developer, no, wait, a Tuesday developer!",
+            "Why did the computer scientist quit his job? Because he couldn't handle the pressure.",
+            "What is the best thing about a Boolean? Even if you're wrong, you're only off by a bit.",
+            "What do you call a lazy kangaroo? Pouch potato.",
+            "Why did the scarecrow win an award? Because he was outstanding in his field.",
+            "What do you call a fish with no eyes? Fsh!",
+            "Why did the bicycle fall over? Because it was two tired.",
+            "Did you hear about the restaurant on the moon? Great food, no atmosphere.",
+            "Knock knock. Who's there? Dwayne. Dwayne who? Dwayne the bathtub, I'm dwowning!",
+            "Knock knock. Who's there? Interrupting cow. Interrupting cow wh— Moo!",
+            "Knock knock. Who's there? Nobody. Nobody who? Nobody home!",
+            "I used to be addicted to soap, but I'm clean now.",
+            "I don't trust stairs. They're always up to something.",
+            "Did you hear about the claustrophobic astronaut? He just wanted a little space.",
+            "I finally bought a self-help book about procrastination. I'll get around to reading it one of these days."
+        ];
+
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        const joke = jokes[randomIndex];
+        document.getElementById("joke-text").innerText = joke;
+    }
+</script>
             </div>
             
         </div>

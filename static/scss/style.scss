@@ -2,6 +2,10 @@
     background-color: #951e1e !important;
 }
 
+.nav-link, .navbar-brand {
+    color: white !important;
+}
+
 .login-body {
     height: 900px;
     width: 100%;
@@ -20,4 +24,19 @@
 
 form {
     text-align: center;
+}
+
+.joke-text {
+    color: white;
+}
+
+.joke-button {
+    background-color: #951e1e;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 20px;
+    color: white;
+    font-weight: bold;
+    margin: 20px 0;
 }
