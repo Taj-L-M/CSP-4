@@ -41,10 +41,6 @@ def page_not_found(e):
 def index():
     return render_template("index.html")
 
-@app.route('/table/')  # connects /stub/ URL to stub() function
-def table():
-    return render_template("table.html")
-
 @app.before_request
 def before_request():
     # Check if the request came from a specific origin
