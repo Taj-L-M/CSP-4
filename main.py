@@ -41,6 +41,18 @@ def page_not_found(e):
 def index():
     return render_template("index.html")
 
+@app.route('/generator')
+def generator():
+    return render_template("generator.html")
+
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
+
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
 @app.before_request
 def before_request():
     # Check if the request came from a specific origin
