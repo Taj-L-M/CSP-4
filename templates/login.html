@@ -1,64 +1,79 @@
 {% extends "layouts/base.html" %}
 {% set project = "Home" %}
 
-{% block body %}
-    <!-- Start of body content specific to page -->
-    <div class="px-5 py-5 mx-auto h-full" style="height: 900px;">
-        <h1 class="text-white"><strong>Login</strong></h1>
-        <div class="row">
-            <div class="col-4">
-                <!-- <div class="card">
-                    <img class="card-img-top" src="{{ url_for('static', filename='assets/python.jpeg') }}" alt="Python Development" height="250">
-                    <div class="card-body">
-                    <h5 class="card-title">What should <mark>Student Developers learn</mark>?</h5>
-                    <p class="card-text">
-                        <ol>
-                            <li>Python 3.11 is used for most of our backend PBL. HTML, CSS, JavaScript will be used in frontend</li>
-                            <li>Visuals Studio Code (VS Code) is the primary editor, Interactive Development Environment (IDE).</li>
-                            <li>GitHub.  Managing and sharing code change, branches, pull requests, issues, and more will be through GitHub.</li>
-                            <li>DevOps. Python programmers should have a passion for managing the environment and learning automation (Git, Linux, Bash, Python Packages, Docker).</li>
-                            <li>API and Microservice using Flask.  Mastering development techniques in creating and consuming RESTful APIs</li>
-                        </ol>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{ url_for('static', filename='assets/flask.png') }}" alt="Flask Development" height="250">
-                    <div class="card-body">
-                    <h5 class="card-title">What is <mark>Flask</mark>? How do I start Web development?</h5>
-                    <p class="card-text">
-                        <ol>
-                            <li>Flask Framework is the popular Web Application development framework of Python.</li>
-                            <li>Blueprint is utility to help abstract complexity, moving information in independent files and directories.</li>
-                            <li>HTML using Bootstrap is a great way to build interesting pages and reduce CSS</li>
-                            <li>Jinja2 is a server-side Python like template engine, supports HTML5 web development, and provides full integration with Flask.</li>
-                        </ol>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{ url_for('static', filename='assets/pythondb.png') }}" alt="Backend and Persistence" height="250">
-                    <div class="card-body">
-                    <h5 class="card-title">How do you manage <mark>Persistent data</mark> with Python?</h5>
-                    <p class="card-text">
-                        <ol>
-                            <li>A Database is an example of persistent data that is held on a computer.  Programming languages and frameworks allow you to store and retrive data.</li>
-                            <li>SQL stands for Structured Query Language · SQL lets you access and manipulate databases and has become a long lasting development standard.</li>
-                            <li>SQLAlchemy is the Python SQL toolkit and Object Relational Mapper (ORM) that gives application developers the full power and flexibility of SQL.</li>
-                            <li>There are many newer and sometimes easier Database languages and frameworks.  Mongo, DynamoDB, Neo4J are Databases being used by students developers in last 3 years.</li>
-                        </ol>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div> -->
-            </div>
-            
-        </div>
-    </div>
+{% block body %}<html lang="en">
+    <head>
+    <script>
+        //import { uri, options } from '{{site.baseurl}}/assets/js/api/config.js';
+        function login_user() {
+          const enteredUid = document.getElementById("uid").value;
+          const enteredPassword = document.getElementById("password").value;
+          console.log("Uid = " + enteredUid)
+          console.log("Password = " + enteredPassword)
+          const signupHeaders = new Headers();
+          signupHeaders.set('111', '222');
+          signupHeaders.set("Accept", "*/*");
+          signupHeaders.set("Accept-Language", "en-US,en;q=0.9");
+          signupHeaders.set("Content-Type", "application/json");
+          login_api(enteredUid,enteredPassword)
+          }
+        function login_api(uid, pw){
+          var myHeaders = new Headers();
+          myHeaders.append("Accept", "*/*");
+          myHeaders.append("Accept-Language", "en-US,en;q=0.9");
+          myHeaders.append("Content-Type", "application/json");
+          myHeaders.append("Cookie", "jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfdWlkIjoidG9ueSJ9.jEShka0oXI1-uCuSTfo3ed5WRw3ASLNV0Tpn1kc5GB0");
+          var raw = JSON.stringify({
+              "uid": uid,
+              "password": pw
+            });
+          var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+          fetch("http://127.0.0.1:8086/api/users/authenticate", requestOptions)
+              .then(response => {
+                if (response.ok) {
+                    console.log("User logged in successfully");
+                    window.location.href = "https://taj-l-m.github.io/Student./"
+                  } else {
+                    console.error("User login failed");
+                    // You can handle failed login attempts here
+                    const errorMessageDiv = document.getElementById('errorMessage');
+                    errorMessageDiv.innerHTML = '<label style="color: red;">User Login Failed</label>';
+                  }
+              })
+              .then(result => {
+                console.log(result);
+                })
+              .catch(error => console.log('error', error));
+          //return response
+        }
+      </script>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login Page</title>
+      <link rel="stylesheet" href="styles.css"> <!-- Include the compiled CSS file -->
+    </head>
+    <body>
+      <!-- Your HTML login form -->
+      <div id="errorMessage"></div>
+      <form action="javascript:login_user()">
+        <p><label for="uid">User ID:</label>
+          <input type="text" name="uid" id="uid" required>
+        </p>
+        <p><label for="password">Password:</label>
+          <input type="password" name="password" id="password" required>
+        </p>
+        <p>
+         <button class="button-spacing">Log In</button>
+              <button onClick = "window.location.href ='./signuppage.html'" class="button-spacing" >Sign Up</button>
+        </p>
+      </form>
+      <!-- Your JavaScript code -->
+    </body>
+    </html>
+    </script>
 {% endblock %}
